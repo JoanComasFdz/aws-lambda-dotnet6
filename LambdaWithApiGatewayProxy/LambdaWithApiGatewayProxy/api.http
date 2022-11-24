@@ -1,0 +1,25 @@
+﻿###
+DELETE https://n8vczqjr73.execute-api.eu-central-1.amazonaws.com/dev/agwproxy
+content-type: application/json
+
+{
+    "body" : "{ \"id\": \"312\", \"name\": \"Joan\" }"
+}
+
+###
+GET https://n8vczqjr73.execute-api.eu-central-1.amazonaws.com/dev/agwproxy
+
+###
+HEAD https://n8vczqjr73.execute-api.eu-central-1.amazonaws.com/dev/agwproxy
+
+###
+OPTIONS https://n8vczqjr73.execute-api.eu-central-1.amazonaws.com/dev/agwproxy
+
+###
+PATCH https://n8vczqjr73.execute-api.eu-central-1.amazonaws.com/dev/agwproxy
+
+###
+POST https://n8vczqjr73.execute-api.eu-central-1.amazonaws.com/dev/agwproxy
+
+###
+PUT https://n8vczqjr73.execute-api.eu-central-1.amazonaws.com/dev/agwproxy
