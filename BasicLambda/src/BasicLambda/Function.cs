@@ -16,9 +16,6 @@ public class Function
     /// <returns></returns>
     public string FunctionHandler(string input, ILambdaContext context)
     {
-        context.Logger.LogInformation($"Call received! Input: {input}");
-
-        return "Tip top";
+        return input.ToUpper();
     }
 }
-
