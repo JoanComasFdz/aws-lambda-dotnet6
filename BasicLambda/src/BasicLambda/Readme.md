@@ -13,7 +13,7 @@ Keep in mind that it will *not* work with an API Gateway or SQS because the ``` 
 2. No .sln file will be created. If you wish to have one:
    1. ```cd .\MyFunctionName```
    2. ```dotnet new sln --name MyFunctionName```
-   3. ```dotnet sln add src/MyFunctionName test/MyFunctionName.Tests```
+   3. ```dotnet sln add .\src\MyFunctionName .\test\MyFunctionName.Tests```
 
 See below the *original* ```Readme.md``` file created by the template:
 

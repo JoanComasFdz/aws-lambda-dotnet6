@@ -53,7 +53,41 @@ Login or create a new Amazon AWS account.
 2. Install the AWS Templates: ```dotnet new -i Amazon.Lambda.Templates```
 3. List lambda templates: ```dotnet new list Lambda```
 
-## Unit Test a .NET6 lambda
+---
+
+## Debug a .NET6 Lambda
+The easiest way is to just debug from Visual Studio, which will launch a browser window with a page to test the lambda. 
+
+For automation reasons, use the tool used by VS to run a lambda. Look into the ```launchProperties.json``` and you will find all you need:
+
+```
+"commandLineArgs": "--port 5050",
+"workingDirectory": ".\\bin\\$(Configuration)\\net6.0",
+"executablePath": "%USERPROFILE%\\.dotnet\\tools\\dotnet-lambda-test-tool-6.0.exe"
+```
+
+Make sure to ```dotnet build``` or unit test ```dotnet test``` your lambda beforehand, so that it creates the necessary files in ```/bin```.
+
+1. Open PowerShell
+2. Go to the root folder of your lambda
+2. For autpmation, avoid launching a window with ```--no-launch-window```
+3. Run the tool as:
+
+
+```
+PS \MyFunctionName\src\MyFunctionName\bin\Release\net6.0> C:\Users\MY-USER-NAME\.dotnet\tools\dotnet-lambda-test-tool-6.0.exe --port 5050 --no-launch-window
+```
+
+More info on the tool: https://github.com/aws/aws-lambda-dotnet/blob/master/Tools/LambdaTestTool/README.md
+
+## Deploy a .NET6 lambda
+1. Navigate to the folder containing the Function.cs file
+2. Run: ```dotnet lambda deploy-function```
+3. Choose a lambda name: Uniquely and descriptevly identifies your lambda
+4. Choose a role name or create a new one (again, use a descritpeve name, an starter can be ```MyFunctionName```)
+5. Choose IAM policy (wait for the list to appear): USe ```AWSLambdaExecute```. You can also start with ```AWSLambda_FullAccess``` to avoid hassle now and choose a more limited one later
+
+## Test a deployed .NET6 lambda
 1. Run: ```dotnet lambda invoke-function MyFunctionName --payload "hello world"```
 2. The output should be similar to:
 ```
@@ -70,32 +104,16 @@ END RequestId: 0e3b2d83-1e91-42ec-b164-ed6190908b21
 REPORT RequestId: 0e3b2d83-1e91-42ec-b164-ed6190908b21  Duration: 226.91 ms     Billed Duration: 227 ms Memory Size: 256 MB     Max Memory Used: 70 MB
 ```
 
-## Debug a .NET6 Lambda
-The easiest way is to just debug from Visual Studio, which will launch a browser window with a page to test the lambda. 
-
-For automation reasons, use the tool used by VS to run a lambda. Look into the ```launchProperties.json``` and you will find all you need:
-
-```
-"commandLineArgs": "--port 5050",
-"workingDirectory": ".\\bin\\$(Configuration)\\net6.0",
-"executablePath": "%USERPROFILE%\\.dotnet\\tools\\dotnet-lambda-test-tool-6.0.exe"
-```
-
-1. Open PowerShell
-2. Go to the build path
-2. For autpmation, avoid launching a window with ```--no-launch-window```
-3. Run the tool as:
-
-
-```
-PS \MyFunctionName\src\MyFunctionName\bin\Release\net6.0> C:\Users\MY-USER-NAME\.dotnet\tools\dotnet-lambda-test-tool-6.0.exe --port 5050 --no-launch-window
-```
-
-More info on the tool: https://github.com/aws/aws-lambda-dotnet/blob/master/Tools/LambdaTestTool/README.md
-
-## Deploy a .NET6 lambda
-1. Navigate to the folder containing the Function.cs file
-2. Run: ```dotnet lambda deploy-function```
-3. Choose a lambda name: Uniquely and descriptevly identifies your lambda
-4. Choose a role name or create a new one (again, use a descritpeve name, an starter can be ```MyFunctionName```)
-5. Choose IAM policy (wait for the list to appear): USe ```AWSLambdaExecute```. You can also start with ```AWSLambda_FullAccess``` to avoid hassle now and choose a more limited one later 
+## Access via API Gateway
+1. Once deployed, go to the aws console
+2. Go to ```Lambda```
+3. Click on your deployed lambda.
+4. Wait and click to ```Add trigger```
+5. Choose ```API Gateway``` (existing or new REST and Open security)
+6. Click ```Add```
+7. Wait and click on the API Gateway name.
+8. On ```ANY```, select ```Test```
+9. Select verb ```POST```
+10. Enter a valid JSON or and empty string (```""```).
+11. Click on ```Test```
+12. Study the right panel from the top
