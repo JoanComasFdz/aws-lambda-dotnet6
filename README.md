@@ -56,7 +56,7 @@ Login or create a new Amazon AWS account.
 ---
 
 ## Debug a .NET6 Lambda
-The easiest way is to just debug from Visual Studio, which will launch a browser window with a page to test the lambda. 
+The easiest way is to just debug from ```Visual Studio```, which will launch a browser window with a page to test the lambda. 
 
 For automation reasons, use the tool used by VS to run a lambda. Look into the ```launchProperties.json``` and you will find all you need:
 
@@ -105,6 +105,8 @@ REPORT RequestId: 0e3b2d83-1e91-42ec-b164-ed6190908b21  Duration: 226.91 ms     
 ```
 
 ## Access via API Gateway
+It is not recommended to expose lambdas directly to the Internet, they should be behind an API Gateway.
+
 1. Once deployed, go to the aws console
 2. Go to ```Lambda```
 3. Click on your deployed lambda.

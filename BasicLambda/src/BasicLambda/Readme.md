@@ -4,16 +4,14 @@ This is the easiest lambda you can create.
 
 It receives a string and returns a string.
 
-It is not recommended to expose lambdas directly to the Internet, they should be behind an API Gateway.
-
 Keep in mind that it will *not* work with an API Gateway or SQS because the ``` FunctionHandler``` method needs some particular types.
 
 ### How to create the simples lambda
 1. Run: ```dotnet new lambda.EmptyFunction --name MyFunctionName```
-2. No .sln file will be created. If you wish to have one:
-   1. ```cd .\MyFunctionName```
-   2. ```dotnet new sln --name MyFunctionName```
-   3. ```dotnet sln add .\src\MyFunctionName .\test\MyFunctionName.Tests```
+3. ```cd .\MyFunctionName```
+3. No ```.sln``` file will be created. If you wish to have one:
+   1. ```dotnet new sln --name MyFunctionName```
+   2. ```dotnet sln add .\src\MyFunctionName .\test\MyFunctionName.Tests```
 
 See below the *original* ```Readme.md``` file created by the template:
 
