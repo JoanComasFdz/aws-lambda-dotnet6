@@ -51,6 +51,18 @@ For example:
 dotnet lambda invoke-function dotnet6LambdaWithApiGateway --payload "{""body"": ""hello world""}"
 ```
 
+## Return codes and outputs
+
+When called from an API Gatway test page or from the internet, this is how it will behave:
+
+- GET: 500 Internal server error + error message in response
+- POST: 200 OK + response
+- PUT: 200 OK + response
+- DELETE: 200 OK + response
+- PATCH: 200 OK + response
+- OPTIONS: 200 OK + response
+- HEAD: 200 OK + no response
+
 
 ---
 
