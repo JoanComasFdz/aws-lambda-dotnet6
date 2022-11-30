@@ -24,10 +24,11 @@ I am trying to get the test lamba tool to work, but it's not yet ready. For more
 
 # Deploy
 1. Use an existing S3 bucket, or create a new one with: ```aws s3 mb s3://myfunctionname```
-2. ```dotnet lambda deploy-serverless```
-3. Choose a stack name (```MyFunctionName```)
-4. Enter the S3 bucket.
-5. Wait.
+2. cd ```src\MyFunctionName```
+3. ```dotnet lambda deploy-serverless```
+4. Choose a stack name (```MyFunctionName```)
+5. Enter the S3 bucket.
+6. Wait.
 
 An API Gateway is created and deployed automatically with the same name used for the function, wthi 2 stages: ```Stage``` and ```Prod```.
 
