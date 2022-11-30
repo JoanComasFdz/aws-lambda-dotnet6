@@ -11,6 +11,11 @@ This is the easiest lambda you can create that can be triggered from an API Gate
    
 > ℹ️ Note: This template doesn't include a testing project
 
+# Debug
+The easiest way is to just debug from ```Visual Studio``` with the default profile, so you just debug your ASP .NET Core application.
+
+I am trying to get the test lamba tool to work, but it's not yet ready. For more information: https://github.com/aws/aws-lambda-dotnet/issues/1095
+
 # Deploy
 1. Use an existing S3 bucket, or create a new one with: ```aws s3 mb s3://myfunctionname```
 2. ```dotnet lambda deploy-serverless```
