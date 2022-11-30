@@ -59,6 +59,7 @@ public class CalculatorController : ControllerBase
     /// <param name="y"></param>
     /// <returns>x divide y</returns>
     [HttpGet("divide/{x}/{y}")]
+    [NotZeroFilter]
     public int Divide(int x, int y)
     {
         _logger.LogInformation($"{x} divide {y} is {x / y}");

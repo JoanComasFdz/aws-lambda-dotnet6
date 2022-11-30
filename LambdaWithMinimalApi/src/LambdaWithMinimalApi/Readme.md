@@ -5,6 +5,9 @@ With a ASP .NET Core Minimal API, there is no longer **one** lambda per project.
 
 The tooling will autpmatically create an API Gateway with resources to call each individual method in the controller.
 
+It also includes an example on how to write and use a filter. More info:
+https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/filters?view=aspnetcore-6.0
+
 ### How to create a ASP .NET Core Minimal API lambda
 1. ```dotnet new serverless.AspNetCoreMinimalAPI --name MyFunctionName```
 2. No .sln file will be created. If you wish to have one:
