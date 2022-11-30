@@ -1,5 +1,5 @@
 # aws-lambda-dotnet6
-Contains examples, analysis and learnings of basic AWS Lambda functions implemented following the different AWS templates
+Contains examples, analysis and learnings of basic AWS Lambda functions implemented following the different AWS templates for .NET 6.
 
 Explore each solution and make sure to read the ```README.md``` file containing the analysis.
 
@@ -73,70 +73,8 @@ Make sure to ```dotnet build``` or unit test ```dotnet test``` your lambda befor
 2. For autpmation, avoid launching a window with ```--no-launch-window```
 3. Run the tool as:
 
-
 ```
-PS \MyFunctionName\src\MyFunctionName\bin\Release\net6.0> C:\Users\MY-USER-NAME\.dotnet\tools\dotnet-lambda-test-tool-6.0.exe --port 5050 --no-launch-window
+PS \MyFunctionName\src\MyFunctionName> C:\Users\MY-USER-NAME\.dotnet\tools\dotnet-lambda-test-tool-6.0.exe --port 5050 --no-launch-window
 ```
 
 More info on the tool: https://github.com/aws/aws-lambda-dotnet/blob/master/Tools/LambdaTestTool/README.md
-
-## Deploy a .NET6 lambda
-1. Navigate to the folder containing the Function.cs file
-2. Run: ```dotnet lambda deploy-function```
-3. Choose a lambda name: Uniquely and descriptevly identifies your lambda
-4. Choose a role name or create a new one (again, use a descritpeve name, an starter can be ```MyFunctionName```)
-5. Choose IAM policy (wait for the list to appear): USe ```AWSLambdaExecute```. You can also start with ```AWSLambda_FullAccess``` to avoid hassle now and choose a more limited one later
-
-## Test a deployed .NET6 lambda
-1. Run: ```dotnet lambda invoke-function MyFunctionName --payload "hello world"```
-2. The output should be similar to:
-```
-PS BasicLambda2\src\BasicLambda2> dotnet lambda invoke-function MyFunctionName --payload "hello world"
-Amazon Lambda Tools for .NET Core applications (5.6.2)
-Project Home: https://github.com/aws/aws-extensions-for-dotnet-cli, https://github.com/aws/aws-lambda-dotnet
-
-Payload:
-"HELLO WORLD"
-
-Log Tail:
-START RequestId: 0e3b2d83-1e91-42ec-b164-ed6190908b21 Version: $LATEST
-END RequestId: 0e3b2d83-1e91-42ec-b164-ed6190908b21
-REPORT RequestId: 0e3b2d83-1e91-42ec-b164-ed6190908b21  Duration: 226.91 ms     Billed Duration: 227 ms Memory Size: 256 MB     Max Memory Used: 70 MB
-```
-
-## Access via API Gateway
-It is not recommended to expose lambdas directly to the Internet, they should be behind an API Gateway.
-
-1. Once deployed, go to the aws console
-2. Go to ```Lambda```
-3. Click on your deployed lambda.
-4. Wait and click to ```Add trigger```
-5. Choose ```API Gateway``` (existing or new REST and Open security)
-6. Click ```Add```
-7. Wait and click on the API Gateway name.
-8. On ```ANY```, select ```Test```
-9. Select verb ```POST```
-10. Enter a valid JSON or and empty string (```""```).
-11. Click on ```Test```
-12. Study the right panel from the top
-
-When you create a resource, make sure to check ```Use Lambda Proxy integration```.
-
-When it works as desired:
-1. Click on ```Actions```
-2. Click on ```Deploy API```
-3. Select ```default``` stage
-4. Enter some description
-5. Click on ```Deploy```
-6. Copy the url.
-7. Make sure to add the resource name of the endpoint at the end of the lambda.
-
-Use your favourite tool to test it, For example in REST Client:
-```
-POST https://xxxxxxxxx.execute-api.us-west-1.amazonaws.com/default/myFunctionName
-content-type: application/application/json
-
-{
- "body": "hello workd"
-}
-```

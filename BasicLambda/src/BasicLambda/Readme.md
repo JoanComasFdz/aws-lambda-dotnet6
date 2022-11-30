@@ -6,12 +6,38 @@ It receives a string and returns a string.
 
 Keep in mind that it will *not* work with an API Gateway or SQS because the ``` FunctionHandler``` method needs some particular types.
 
+Only 1 function per project is allowed.
+
 ### How to create the simples lambda
 1. Run: ```dotnet new lambda.EmptyFunction --name MyFunctionName```
 3. ```cd .\MyFunctionName```
 3. No ```.sln``` file will be created. If you wish to have one:
    1. ```dotnet new sln --name MyFunctionName```
    2. ```dotnet sln add .\src\MyFunctionName .\test\MyFunctionName.Tests```
+
+## Deploy a .NET6 lambda
+1. Navigate to the folder containing the Function.cs file
+2. Run: ```dotnet lambda deploy-function```
+3. Choose a lambda name: Uniquely and descriptevly identifies your lambda
+4. Choose a role name or create a new one (again, use a descritpeve name, an starter can be ```MyFunctionName```)
+5. Choose IAM policy (wait for the list to appear): USe ```AWSLambdaExecute```. You can also start with ```AWSLambda_FullAccess``` to avoid hassle now and choose a more limited one later
+
+## Test a deployed .NET6 lambda
+1. Run: ```dotnet lambda invoke-function MyFunctionName --payload "hello world"```
+2. The output should be similar to:
+```
+PS BasicLambda2\src\BasicLambda2> dotnet lambda invoke-function MyFunctionName --payload "hello world"
+Amazon Lambda Tools for .NET Core applications (5.6.2)
+Project Home: https://github.com/aws/aws-extensions-for-dotnet-cli, https://github.com/aws/aws-lambda-dotnet
+
+Payload:
+"HELLO WORLD"
+
+Log Tail:
+START RequestId: 0e3b2d83-1e91-42ec-b164-ed6190908b21 Version: $LATEST
+END RequestId: 0e3b2d83-1e91-42ec-b164-ed6190908b21
+REPORT RequestId: 0e3b2d83-1e91-42ec-b164-ed6190908b21  Duration: 226.91 ms     Billed Duration: 227 ms Memory Size: 256 MB     Max Memory Used: 70 MB
+```
 
 See below the *original* ```Readme.md``` file created by the template:
 

@@ -1,8 +1,11 @@
 # Description
+Now you are able to develop a normal minimal api application with the full power of .NET, with no other vendor-specific dependencies.
 
-This is the easiest lambda you can create that can be triggered from an API Gateway.
+With a ASP .NET Core Minimal API, there is no longer **one** lambda per project.
 
-### How to create the simples lambda
+The tooling will autpmatically create an API Gateway with resources to call each individual method in the controller.
+
+### How to create a ASP .NET Core Minimal API lambda
 1. ```dotnet new serverless.AspNetCoreMinimalAPI --name MyFunctionName```
 2. No .sln file will be created. If you wish to have one:
    1. ```cd .\MyFunctionName```
