@@ -8,7 +8,7 @@ The tooling will autpmatically create an API Gateway with resources to call each
 It also includes an example on how to write and use a filter. More info:
 https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/filters?view=aspnetcore-6.0
 
-### How to create a ASP .NET Core Minimal API lambda
+# How to create a ASP .NET Core Minimal API lambda
 1. ```dotnet new serverless.AspNetCoreMinimalAPI --name MyFunctionName```
 2. No .sln file will be created. If you wish to have one:
    1. ```cd .\MyFunctionName```

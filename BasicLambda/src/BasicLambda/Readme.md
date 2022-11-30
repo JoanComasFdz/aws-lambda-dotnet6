@@ -8,21 +8,21 @@ Keep in mind that it will *not* work with an API Gateway or SQS because the ``` 
 
 Only 1 function per project is allowed.
 
-### How to create the simples lambda
+# How to create the simplest lambda
 1. Run: ```dotnet new lambda.EmptyFunction --name MyFunctionName```
 3. ```cd .\MyFunctionName```
 3. No ```.sln``` file will be created. If you wish to have one:
    1. ```dotnet new sln --name MyFunctionName```
    2. ```dotnet sln add .\src\MyFunctionName .\test\MyFunctionName.Tests```
 
-## Deploy a .NET6 lambda
+# Deploy a .NET6 lambda
 1. Navigate to the folder containing the Function.cs file
 2. Run: ```dotnet lambda deploy-function```
 3. Choose a lambda name: Uniquely and descriptevly identifies your lambda
 4. Choose a role name or create a new one (again, use a descritpeve name, an starter can be ```MyFunctionName```)
 5. Choose IAM policy (wait for the list to appear): USe ```AWSLambdaExecute```. You can also start with ```AWSLambda_FullAccess``` to avoid hassle now and choose a more limited one later
 
-## Test a deployed .NET6 lambda
+# Test a deployed .NET6 lambda
 1. Run: ```dotnet lambda invoke-function MyFunctionName --payload "hello world"```
 2. The output should be similar to:
 ```
