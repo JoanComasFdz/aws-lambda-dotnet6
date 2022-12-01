@@ -32,7 +32,12 @@ I am trying to get the test lamba tool to work, but it's not yet ready. For more
 
 An API Gateway is created and deployed automatically with the same name used for the function, wthi 2 stages: ```Stage``` and ```Prod```.
 
-The URL is returned in the last line
+The URL is returned in the last line.
+
+The name of the function is **not** going to be just the name of your lambda, it will be truncated and have some suffix, like:
+```
+dotnet6LambdaMinimalApiPublishe-AspNetCoreFunction-9ygcHy2A07zJ
+```
 
 # Test deployed .NET6 lambda
 1. GET on that base URL: ```curl  https://xxxxxx.execute-api.LOCATION.amazonaws.com/Prod/```
