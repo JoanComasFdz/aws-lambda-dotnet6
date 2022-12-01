@@ -53,7 +53,7 @@ REPORT RequestId: fb6378ea-3801-4ee4-bd5e-59183ba16ed6  Duration: 74.86 ms      
 # Access via SNS
 As of now, Lambda only supports ```Standard SNS``` topics.
 
-To create one, follow the steps in [LambdaReceivesSQSEvent Readme.md](../../../LambdaReceivesSQSEvent/src/LambdaReceivesSQSEvent/Readme.md), selecting ```FIFO``` type.
+To create one, follow the steps in [LambdaReceivesSQSEvent Readme.md](../../../LambdaReceivesSQSEvent/src/LambdaReceivesSQSEvent/Readme.md).
 
 ## By hand
 ### Create a topic
@@ -133,7 +133,9 @@ PS > aws logs get-log-events --log-group-name /aws/lambda/MyFunctionName --log-s
 }
 ```
 
+See below the *original* ```Readme.md``` file created by the template:
 
+---
 # AWS Lambda Simple SNS Function Project
 
 This starter project consists of:
