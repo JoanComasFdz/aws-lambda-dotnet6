@@ -30,7 +30,7 @@ Just debug from ```Visual Studio``` with the default profile.
 3. Choose a lambda name: Uniquely and descriptevly identifies your lambda
 4. Choose a role name or create a new one (again, use a descritpeve name, an starter can be ```MyFunctionName```)
 5. Choose IAM policy (wait for the list to appear): USe ```AWSLambda_FullAccess```
-6. **Add CloudWatch rights**: ```aws iam attach-role-policy --policy-arn arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole --role-name MyFunctionN ame```
+6. **Add CloudWatch rights**: ```aws iam attach-role-policy --policy-arn arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole --role-name MyFunctionName```
 
 # Test a deployed .NET6 lambda
 1. Run: ```dotnet lambda invoke-function MyFunctionName --payload "{ ""Records"": [ { ""Sns"": { ""Message"": ""Hello from SNS!"" }}]}"```
