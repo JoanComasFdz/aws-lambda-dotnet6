@@ -96,7 +96,7 @@ When it works as desired:
 
 Use your favourite tool to test it, For example in REST Client:
 ```
-POST https://xxxxxxxxx.execute-api.us-west-1.amazonaws.com/default/myFunctionName
+POST https://xxxxxxxxx.execute-api.LOCAtion.amazonaws.com/default/myFunctionName
 content-type: application/application/json
 
 {

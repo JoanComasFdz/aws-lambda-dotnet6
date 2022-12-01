@@ -21,10 +21,10 @@ Just debug from ```Visual Studio``` with the default profile.
 5. Choose IAM policy (wait for the list to appear): USe ```AWSLambdaSQSQueueExecutionRole```
 
 # Test a deployed .NET6 lambda
-1. Run: ```dotnet lambda invoke-function dotnet6LambdaReceivesSQSEvent --payload "{""Records"": [{ ""body"": ""Hello from SQS!"" }]}"```
+1. Run: ```dotnet lambda invoke-function MyFunctionName --payload "{""Records"": [{ ""body"": ""Hello from SQS!"" }]}"```
 2. The output should be similar to:
 ```
-PS BasicLambda2\src\BasicLambda2> dotnet lambda invoke-function dotnet6LambdaReceivesSQSEvent --payload "{""Records"": [{ ""body"": ""Hello from SQS!"" }]}"
+PS > dotnet lambda invoke-function dotnet6LambdaReceivesSQSEvent --payload "{""Records"": [{ ""body"": ""Hello from SQS!"" }]}"
 Amazon Lambda Tools for .NET Core applications (5.6.2)
 Project Home: https://github.com/aws/aws-extensions-for-dotnet-cli, https://github.com/aws/aws-lambda-dotnet
 
@@ -32,10 +32,10 @@ Payload:
 
 
 Log Tail:
-START RequestId: fb6378ea-3801-4ee4-bd5e-59183ba16ed6 Version: $LATEST
-2022-12-01T08:40:03.793Z        fb6378ea-3801-4ee4-bd5e-59183ba16ed6    info    Processed message Hello from SQS!
-END RequestId: fb6378ea-3801-4ee4-bd5e-59183ba16ed6
-REPORT RequestId: fb6378ea-3801-4ee4-bd5e-59183ba16ed6  Duration: 74.86 ms      Billed Duration: 75 ms  Memory Size: 256 MB     Max Memory Used: 70 MB
+START RequestId: 2448ca0c-b816-4d67-9ae5-dd4454380af6 Version: $LATEST
+2022-12-01T10:19:30.772Z        2448ca0c-b816-4d67-9ae5-dd4454380af6    info    Processed record Hello from SNS!
+END RequestId: 2448ca0c-b816-4d67-9ae5-dd4454380af6
+REPORT RequestId: 2448ca0c-b816-4d67-9ae5-dd4454380af6  Duration: 94.42 ms      Billed Duration: 95 ms  Memory Size: 256 MB     Max Memory Used: 66 MB
 ```
 
 # Access via SQS
@@ -77,15 +77,15 @@ REPORT RequestId: fb6378ea-3801-4ee4-bd5e-59183ba16ed6  Duration: 74.86 ms      
 2. Store the URL returned
 
 ### Make the queue trigger the lambda
-1. Get the queue ARN: ```aws sqs get-queue-attributes --queue-url https://sqs.us-west-1.amazonaws.com/111111111/MyQueue --attribute-name QueueArn```
-2. Run: ```aws lambda create-event-source-mapping --function-name MyFunctionName --event-source-arn arn:aws:sqs:us-west-2:111111111:MyQueue```
+1. Get the queue ARN: ```aws sqs get-queue-attributes --queue-url https://sqs.LOCATION.amazonaws.com/111111111/MyQueue --attribute-name QueueArn```
+2. Run: ```aws lambda create-event-source-mapping --function-name MyFunctionName --event-source-arn arn:aws:sqs:LOCATION:111111111:MyQueue```
 
 ### Test it
 1. The log group name is: ```/aws/lambda/MyFunctionName```
 2. Open a new PowerShell window
 3. Run: ```aws logs tail /aws/lambda/MyFunctionName --follow```
 4. Go back to the previous windows
-5. Run: ```aws sqs send-message --queue-url https://sqs.us-west-1.amazonaws.com/111111111/MyQueue --message-body "Sending a message from CLI."
+5. Run: ```aws sqs send-message --queue-url https://sqs.LOCATION.amazonaws.com/111111111/MyQueue --message-body "Sending a message from CLI."```
 6. Go back to the other window
 7. After few seconds, the logs will appear, like:
 

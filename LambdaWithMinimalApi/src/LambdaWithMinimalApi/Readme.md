@@ -36,7 +36,7 @@ An API Gateway is created and deployed automatically with the same name used for
 1. Get the id of the automaticaly created API Gateway with: ```aws apigateway get-rest-apis --query 'items[?name==`MyFunctionName`].[id]' --output text```
 2. Build the URL yourself: ```https://<api-gateway-id>.execute-api.<region>.amazonaws.com/<stageName>```
 3. GET on that base URL should return the default welcome message, for example: ```Welcome to running ASP.NET Core Minimal API on AWS Lambda```
-4. To call each controller method, use the controller name as resource, for example: ```GET https://xxxxxxx.execute-api.us-west-1.amazonaws.com/Stage/calculator/add/1/2```
+4. To call each controller method, use the controller name as resource, for example: ```GET https://xxxxxxx.execute-api.LOCATION.amazonaws.com/Stage/calculator/add/1/2```
 
 See below the *original* ```Readme.md``` file created by the template:
 
