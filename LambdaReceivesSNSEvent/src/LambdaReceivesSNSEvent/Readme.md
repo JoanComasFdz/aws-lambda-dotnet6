@@ -1,6 +1,17 @@
 # Description
 Nothing very intersting here, just receive an event and process its records.
 
+This example will subscribe directly to a message published in an SNS topic, but in reality most applications will **not** do that.
+
+The standard procedure is:
+1. Application publishes event to an SNS Topic
+2. SNS Topic routes the event to the necessary SQS Queues, based on some rules
+3. SQS Queues deliver the event to the subscribed aplications
+
+> ℹ️ Note: Even if conceptually queues are to be pulled from, lambdas will just get the message pushed.
+
+More info: https://medium.com/awesome-cloud/aws-difference-between-sqs-and-sns-61a397bf76c5
+
 When debugging, use the Example Request ```SNS```, to change the event content just modify the body property.
 
 # How to create a lambda that receives an SQS Event
