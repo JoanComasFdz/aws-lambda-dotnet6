@@ -1,0 +1,16 @@
+POST https://localhost:56966/users/
+Content-Type: application/json
+
+{
+    "name": "Joan Comas",
+    "address": "Awesome street 7, Nicetown, Amazingland"
+}
+
+###
+POST  https://7t4adodhpb.execute-api.us-west-1.amazonaws.com/Prod/users/
+Content-Type: application/json
+
+{
+    "name": "Joan Comas",
+    "address": "Awesome street 7, Nicetown, Amazingland"
+}
