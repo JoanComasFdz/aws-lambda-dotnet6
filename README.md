@@ -3,6 +3,13 @@ Contains examples, analysis and learnings of basic AWS Lambda functions implemen
 
 Explore each solution and make sure to read the ```README.md``` file containing the analysis.
 
+## Disclaimer
+The intended use of this repository is for developers to learn and have things up and runnning as soon as possible, so they can focus on the code and familiarize themselves with he managed services.
+
+It uses mostly default values and the least secure and most broad rights and no or very basic authentication / authorization **on purpose**.
+
+It goes without saying that for any serious / professional application, careful attention has to be put to determine the most secure, most restrictive premissions and proper configuration values for each and every component.
+
 ## Prerequisits
 This repository is based on:
 - Windows 10
