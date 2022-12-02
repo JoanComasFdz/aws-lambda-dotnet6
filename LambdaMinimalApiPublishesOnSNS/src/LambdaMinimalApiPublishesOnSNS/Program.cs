@@ -1,5 +1,6 @@
 using Amazon;
 using Amazon.SimpleNotificationService;
+using Amazon.XRay.Recorder.Handlers.AwsSdk;
 using LambdaMinimalApiPublishesOnSNS;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,6 +12,10 @@ builder.Services.AddControllers();
 // Add AWS Lambda support. When application is run in Lambda Kestrel is swapped out as the web server with Amazon.Lambda.AspNetCoreServer. This
 // package will act as the webserver translating request and responses between the Lambda event source and ASP.NET Core.
 builder.Services.AddAWSLambdaHosting(LambdaEventSource.RestApi);
+
+#if !DEBUG
+AWSSDKHandler.RegisterXRayForAllServices();
+#endif
 
 var snsTopicArn = Environment.GetEnvironmentVariable("AWS_SNS_TOPICARN");
 var currentAwsRegion = Environment.GetEnvironmentVariable("AWS_REGION");
