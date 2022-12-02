@@ -23,6 +23,6 @@ AWSSDKHandler.RegisterXRayForAllServices();
 
 # Performance
 Here are some ballpark values observed while manually testing:
-- Cold start: 4.6s
-- Next call: 600ms
-- Next calls: 200ms - 600ms
+- Cold start: ~4.6s
+- Next call: ~600ms
+- Next calls: ~200ms - ~600ms
