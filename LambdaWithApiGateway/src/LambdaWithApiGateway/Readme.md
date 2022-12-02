@@ -116,6 +116,11 @@ When called from an API Gatway test page or from the internet, this is how it wi
 - OPTIONS: 200 OK + response
 - HEAD: 200 OK + no response
 
+# Performance
+Here are some ballpark values observed while manually testing:
+- Cold start: ~1.5s
+- Next call: ~500ms
+- Next calls: ~500ms
 
 ---
 
