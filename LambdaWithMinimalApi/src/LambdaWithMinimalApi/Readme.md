@@ -44,6 +44,12 @@ dotnet6LambdaMinimalApiPublishe-AspNetCoreFunction-9ygcHy2A07zJ
 2. Should return: ```Welcome to running ASP.NET Core Minimal API on AWS Lambda```
 4. With RESTClient, try the controllermethods: ```GET https://xxxxxxx.execute-api.LOCATION.amazonaws.com/Prod/calculator/add/1/2```
 
+# Performance
+Here are some ballpark values observed while manually testing:
+- Cold start: ?
+- Next call: ~600ms
+- Next calls: ~200ms - ~600ms
+
 See below the *original* ```Readme.md``` file created by the template:
 
 ---
