@@ -29,15 +29,20 @@ public class Function
     /// <returns></returns>
     public async Task FunctionHandler(SNSEvent evnt, ILambdaContext context)
     {
+        context.Logger.LogInformation($"Processing sns event: {evnt}");
+
         foreach(var record in evnt.Records)
         {
             await ProcessRecordAsync(record, context);
         }
+
+        context.Logger.LogInformation($"Processed sns event: {evnt}");
+
     }
 
     private async Task ProcessRecordAsync(SNSEvent.SNSRecord record, ILambdaContext context)
     {
-        context.Logger.LogInformation($"Processed record {record.Sns.Message}");
+        context.Logger.LogInformation($"Processed record: {record.Sns.Message}");
 
         // TODO: Do interesting work based on the new message
         await Task.CompletedTask;
