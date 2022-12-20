@@ -1,5 +1,6 @@
 using Amazon;
 using Amazon.SimpleNotificationService;
+using Amazon.XRay.Recorder.Handlers.AwsSdk;
 using LambdaMinimalApiPublishesOnSNS;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,12 +13,6 @@ builder.Services.AddControllers();
 // package will act as the webserver translating request and responses between the Lambda event source and ASP.NET Core.
 builder.Services.AddAWSLambdaHosting(LambdaEventSource.RestApi);
 
-var snsTopicArn = Environment.GetEnvironmentVariable("AWS_SNS_TOPICARN");
-var currentAwsRegion = Environment.GetEnvironmentVariable("AWS_REGION");
-var regionEndpoint = RegionEndpoint.GetBySystemName(currentAwsRegion);
-builder.Services.AddScoped(_ => new AmazonSimpleNotificationServiceClient(regionEndpoint));
-builder.Services.AddScoped<ISnsPublisher>(serviceProvider => new SnsPublisher(serviceProvider.GetService<AmazonSimpleNotificationServiceClient>(), snsTopicArn));
-
 var app = builder.Build();
 
 app.UseHttpsRedirection();
@@ -28,12 +23,20 @@ app.MapGet("/", () => "Welcome to running ASP.NET Core Minimal API on AWS Lambda
 
 static async Task<IResult> AddUser(
     [FromBody] User user,
-    [FromServices] ILogger<Program> logger,
-    [FromServices] ISnsPublisher publisher)
+    [FromServices] ILogger<Program> logger
+    //, [FromServices] ISnsPublisher publisher
+    )
 {
     logger.LogInformation("The user will be added: {user}", user);
 
-    await publisher.PublishAsync(new CreateUserCommand(user));
+    AWSSDKHandler.RegisterXRayForAllServices();
+
+    var snsTopicArn = Environment.GetEnvironmentVariable("AWS_SNS_TOPICARN");
+    var currentAwsRegion = Environment.GetEnvironmentVariable("AWS_REGION");
+    var regionEndpoint = RegionEndpoint.GetBySystemName(currentAwsRegion);
+    var snsPublisher = new SnsPublisher(new AmazonSimpleNotificationServiceClient(regionEndpoint), snsTopicArn);
+
+    await snsPublisher.PublishAsync(new CreateUserCommand(user));
     
     return Results.Ok();
 }
