@@ -1,5 +1,6 @@
 using Amazon.Lambda.Core;
 using Amazon.Lambda.SNSEvents;
+using Amazon.XRay.Recorder.Handlers.AwsSdk;
 
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
@@ -16,9 +17,8 @@ public class Function
     /// </summary>
     public Function()
     {
-
+        AWSSDKHandler.RegisterXRayForAllServices();
     }
-
 
     /// <summary>
     /// This method is called for every Lambda invocation. This method takes in an SNS event object and can be used 
